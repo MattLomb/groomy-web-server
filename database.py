@@ -48,6 +48,21 @@ def dbInit():
                 )"""
     queryDb(query)
     print("Shops table OK")
+    query = """CREATE TABLE IF NOT EXISTS Appointments ( id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    pet_owner TEXT,
+                    shop_owner TEXT,
+	                pet TEXT,
+                    date DATE,
+                    hour TEXT,
+                    status NUMERIC,
+                    lavaggio BOOLEAN,
+	                taglio_pelo BOOLEAN,
+	                taglio_unghie BOOLEAN,
+	                spa BOOLEAN,
+	                anti_parassitario BOOLEAN
+                )"""
+    queryDb(query)
+    print("Appointments table OK")
     print("DB STARTED WITH SUCCESS!")
 
 # Retrieve pets for a specific user
@@ -130,6 +145,41 @@ def deleteShop( args ):
     query = """DELETE FROM Shops WHERE id = """ + args
     queryDb(query)
     print("Shop with ID= " + args + " deleted with success")
+    return 'OK'
+
+#Create a new appointment
+def addAppointment( args ):
+    query = """INSERT INTO Appointments (pet_owner, shop_owner, pet, date, hour, status, lavaggio, taglio_pelo, taglio_unghie, spa, anti_parassitario ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
+    queryDb(query, args)
+    print("APPOINTMENT CREATED")
+    
+def getAppointments( user_id ):
+    query = """SELECT * FROM Appointments WHERE pet_owner=? OR shop_owner=?"""
+    args = (user_id, user_id)
+    res = queryDb(query, args)
+    result = []
+    for row in res:
+        shop = {"id":row[0],
+               "pet_owner":row[1],
+               "shop_owner":row[2],
+               "pet":row[3],
+               "date":row[4],
+               "hour":row[5],
+               "status":row[6],
+               "lavaggio":row[7],
+               "taglio_pelo":row[8],
+               "taglio_unghie":row[9],
+               "spa":row[10],
+               "anti_parassitario":row[11]
+            }
+        result.append(shop)
+    return result
+    
+# Delete an appointment
+def deleteAppointment( args ):
+    query = """DELETE FROM Appointments WHERE id = """ + args
+    queryDb(query)
+    print("Appointment with ID= " + args + " deleted with success")
     return 'OK'
 
 # UTILS

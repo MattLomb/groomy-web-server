@@ -92,14 +92,43 @@ def delete_shop():
 #Add appointment
 @app.route('/appointments', methods=['PUT', 'POST'] )
 def add_appointment():
-    return 'Appointment added'
+    args = request.get_json()
+    pet_owner = args['pet_owner']
+    shop_owner = args['shop_owner']
+    pet = args['pet']
+    date = args['date']
+    hour = args['hour']
+    status = args['status']
+    lavaggio = args['lavaggio']
+    taglio_pelo = args['taglio_pelo']
+    taglio_unghie = args['taglio_unghie']
+    spa = args['spa']
+    anti_parassitario = args['anti_parassitario']
+    params = (pet_owner, 
+              shop_owner,
+              pet,
+              date,
+              hour,
+              status,
+              lavaggio,
+              taglio_pelo,
+              taglio_unghie,
+              spa,
+              anti_parassitario,
+            )
+    db.addAppointment( params )
+    return 'OK'
 
 #Get appointments
 @app.route('/appointments', methods=['GET'] )
 def get_appointments():
-    return 'Appointments list'
+    user_id = request.args.get('user_id')
+    res = db.getAppointments(user_id)
+    return jsonify(res)
 
 #Remove appointments
 @app.route('/appointments', methods=['DELETE'] )
 def delete_appointment():
-    return 'Appointment deleted'
+    id = request.args.get('id')
+    db.deleteAppointment(id)
+    return 'OK'
