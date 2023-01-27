@@ -68,6 +68,10 @@ def add_shop():
 @app.route('/shop', methods=['GET'])
 def get_shop():
     user_id = request.args.get('user_id')
+    if user_id == 'ALL':
+        print("retrieving all shops in the application")
+        res = db.getAllShop()
+        return res
     if user_id != '':
         print('Executing query')
         res = db.getShop(user_id)

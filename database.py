@@ -84,6 +84,12 @@ def getShop( user_id ):
     res = queryDb( query, args )
     return json.dumps(res)
 
+# Retrieve all shops in the application
+def getAllShop():
+    query = """SELECT * FROM Shops"""
+    res = queryDb(query)
+    return json.dumps(res)
+
 # Remove a shop from db
 def deleteShop( args ):
     query = """DELETE FROM Shops WHERE id = """ + args
