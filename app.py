@@ -90,7 +90,7 @@ def delete_shop():
         return 'KO'
 
 #Add appointment
-@app.route('/appointments', methods=['PUT', 'POST'] )
+@app.route('/appointments', methods=['POST'] )
 def add_appointment():
     args = request.get_json()
     pet_owner = args['pet_owner']
@@ -131,4 +131,13 @@ def get_appointments():
 def delete_appointment():
     id = request.args.get('id')
     db.deleteAppointment(id)
+    return 'OK'
+
+#Update the status of a given appointment
+@app.route('/appointments', methods=['PUT'] )
+def update_appointment():
+    args = request.get_json()
+    id = args['id']
+    status = args['status']
+    db.updateAppointment(id, status)
     return 'OK'

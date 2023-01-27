@@ -183,6 +183,14 @@ def deleteAppointment( args ):
     print("Appointment with ID= " + args + " deleted with success")
     return 'OK'
 
+#Update appointment
+def updateAppointment(id, status):
+    query = """UPDATE Appointments SET status=? WHERE id=?"""
+    args = (status, id,)
+    queryDb(query,args)
+    return 'STATUS UPDATED'
+    
+    
 # UTILS
 def printQuery():
     print("test")
