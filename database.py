@@ -23,7 +23,6 @@ def queryDb(query, args=(), one=False):
     conn.commit()
     rv = cur.fetchall()
     cur.close()
-    #print(rv)
     return (rv[0] if rv else None) if one else rv
 
 # Startup the db: create Pets, Shops and Appointments tables
@@ -56,7 +55,20 @@ def getPets( user_id ):
     query = """SELECT * FROM Pets WHERE user_id=?"""
     args = (user_id,)
     res = queryDb( query, args )
-    return json.dumps(res)
+    print(res)
+    result = []
+    for row in res:
+        pet = {"id":row[0],
+               "user_id":row[1],
+               "name":row[2],
+               "race":row[3],
+               "weight":row[4],
+               "size":row[5],
+               "age":row[6],
+               "hair_type":row[7]
+            }
+        result.append(pet)
+    return result
     
 # Add a new pet
 def addPet( args ):

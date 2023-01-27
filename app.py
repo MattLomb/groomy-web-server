@@ -36,7 +36,7 @@ def get_pet():
     if user_id != '':
         print('Executing query')
         res = db.getPets(user_id)
-        return res
+        return jsonify(res)
     else:
         return 'KO'
 
