@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 
 db.dbInit()
-tableName = "Pets"
+#tableName = "Pets"
 #db.dropTable(tableName)
 
 @app.route('/')
@@ -53,17 +53,37 @@ def delete_pet():
 #Add a shop
 @app.route('/shop', methods=['PUT','POST'])
 def add_shop():
+    args = request.get_json()
+    user_id = args['user_id']
+    shop_name = args['shop_name']
+    address = args['address']
+    hours = args['hours']
+    telephone = args['telephone']
+    email = args['email']
+    params = (user_id, shop_name, address, hours, telephone, email, )
+    db.addShop(params)
     return 'Shop added!'
 
 #Get a shop
 @app.route('/shop', methods=['GET'])
 def get_shop():
-    return 'Shop id!'
+    user_id = request.args.get('user_id')
+    if user_id != '':
+        print('Executing query')
+        res = db.getShop(user_id)
+        return res
+    else:
+        return 'KO'
 
 #Remove a shop
 @app.route('/shop', methods=['DELETE'])
 def delete_shop():
-    return 'Shop removed!'
+    shop_id = request.args.get('id')
+    if shop_id != '':
+        db.deleteShop(shop_id)
+        return 'OK'
+    else:
+        return 'KO'
 
 #Add appointment
 @app.route('/appointments', methods=['PUT', 'POST'] )
