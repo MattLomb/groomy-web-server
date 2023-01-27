@@ -71,11 +71,11 @@ def get_shop():
     if user_id == 'ALL':
         print("retrieving all shops in the application")
         res = db.getAllShop()
-        return res
+        return jsonify(res)
     if user_id != '':
         print('Executing query')
         res = db.getShop(user_id)
-        return res
+        return jsonify(res)
     else:
         return 'KO'
 
