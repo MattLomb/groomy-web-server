@@ -153,6 +153,7 @@ def addAppointment( args ):
     queryDb(query, args)
     print("APPOINTMENT CREATED")
     
+# Retrieve appointment for a specific user
 def getAppointments( user_id ):
     query = """SELECT * FROM Appointments WHERE pet_owner=? OR shop_owner=?"""
     args = (user_id, user_id)
