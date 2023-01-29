@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 
 db.dbInit()
-#tableName = "Pets"
+#tableName = "Appointments"
 #db.dropTable(tableName)
 
 @app.route('/')
@@ -95,6 +95,7 @@ def add_appointment():
     args = request.get_json()
     pet_owner = args['pet_owner']
     shop_owner = args['shop_owner']
+    shop_name = args['shop_name']
     pet = args['pet']
     date = args['date']
     hour = args['hour']
@@ -106,6 +107,7 @@ def add_appointment():
     anti_parassitario = args['anti_parassitario']
     params = (pet_owner, 
               shop_owner,
+              shop_name,
               pet,
               date,
               hour,

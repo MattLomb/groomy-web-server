@@ -51,6 +51,7 @@ def dbInit():
     query = """CREATE TABLE IF NOT EXISTS Appointments ( id INTEGER PRIMARY KEY AUTOINCREMENT,
                     pet_owner TEXT,
                     shop_owner TEXT,
+                    shop_name TEXT,
 	                pet TEXT,
                     date DATE,
                     hour TEXT,
@@ -149,7 +150,7 @@ def deleteShop( args ):
 
 #Create a new appointment
 def addAppointment( args ):
-    query = """INSERT INTO Appointments (pet_owner, shop_owner, pet, date, hour, status, lavaggio, taglio_pelo, taglio_unghie, spa, anti_parassitario ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
+    query = """INSERT INTO Appointments (pet_owner, shop_owner, shop_name, pet, date, hour, status, lavaggio, taglio_pelo, taglio_unghie, spa, anti_parassitario ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
     queryDb(query, args)
     print("APPOINTMENT CREATED")
     
@@ -163,15 +164,16 @@ def getAppointments( user_id ):
         shop = {"id":row[0],
                "pet_owner":row[1],
                "shop_owner":row[2],
-               "pet":row[3],
-               "date":row[4],
-               "hour":row[5],
-               "status":row[6],
-               "lavaggio":row[7],
-               "taglio_pelo":row[8],
-               "taglio_unghie":row[9],
-               "spa":row[10],
-               "anti_parassitario":row[11]
+               "shop_name" :row[3],
+               "pet":row[4],
+               "date":row[5],
+               "hour":row[6],
+               "status":row[7],
+               "lavaggio":row[8],
+               "taglio_pelo":row[9],
+               "taglio_unghie":row[10],
+               "spa":row[11],
+               "anti_parassitario":row[12]
             }
         result.append(shop)
     return result
