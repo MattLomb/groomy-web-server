@@ -138,8 +138,7 @@ def delete_appointment():
 #Update the status of a given appointment
 @app.route('/appointments', methods=['PUT'] )
 def update_appointment():
-    args = request.get_json()
-    id = args['id']
-    status = args['status']
+    id = request.args.get('id')
+    status = request.args.get('status')
     db.updateAppointment(id, status)
     return 'OK'
