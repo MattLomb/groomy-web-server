@@ -53,7 +53,7 @@ def dbInit():
                     shop_owner TEXT,
                     shop_name TEXT,
 	                pet TEXT,
-                    date DATE,
+                    date DATETIME,
                     hour TEXT,
                     status NUMERIC,
                     lavaggio BOOLEAN,
@@ -156,7 +156,7 @@ def addAppointment( args ):
     
 # Retrieve appointment for a specific user
 def getAppointments( user_id ):
-    query = """SELECT * FROM Appointments WHERE pet_owner=? OR shop_owner=?"""
+    query = """SELECT * FROM Appointments WHERE pet_owner=? OR shop_owner=? ORDER BY date DESC"""
     args = (user_id, user_id)
     res = queryDb(query, args)
     result = []
