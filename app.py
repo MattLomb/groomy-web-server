@@ -96,6 +96,7 @@ def add_appointment():
     pet_owner = args['pet_owner']
     shop_owner = args['shop_owner']
     shop_name = args['shop_name']
+    pet_owner_name = args['pet_owner_name']
     pet = args['pet']
     date = args['date']
     hour = args['hour']
@@ -108,6 +109,7 @@ def add_appointment():
     params = (pet_owner, 
               shop_owner,
               shop_name,
+              pet_owner_name,
               pet,
               date,
               hour,

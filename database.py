@@ -52,6 +52,7 @@ def dbInit():
                     pet_owner TEXT,
                     shop_owner TEXT,
                     shop_name TEXT,
+                    pet_owner_name TEXT,
 	                pet TEXT,
                     date DATETIME,
                     hour TEXT,
@@ -150,7 +151,7 @@ def deleteShop( args ):
 
 #Create a new appointment
 def addAppointment( args ):
-    query = """INSERT INTO Appointments (pet_owner, shop_owner, shop_name, pet, date, hour, status, lavaggio, taglio_pelo, taglio_unghie, spa, anti_parassitario ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
+    query = """INSERT INTO Appointments (pet_owner, shop_owner, shop_name, pet_owner_name, pet, date, hour, status, lavaggio, taglio_pelo, taglio_unghie, spa, anti_parassitario ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
     queryDb(query, args)
     print("APPOINTMENT CREATED")
     
@@ -165,6 +166,7 @@ def getAppointments( user_id ):
                "pet_owner":row[1],
                "shop_owner":row[2],
                "shop_name" :row[3],
+               "pet_owner_name" : row[4],
                "pet":row[4],
                "date":row[5],
                "hour":row[6],
