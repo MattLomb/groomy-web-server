@@ -167,15 +167,15 @@ def getAppointments( user_id ):
                "shop_owner":row[2],
                "shop_name" :row[3],
                "pet_owner_name" : row[4],
-               "pet":row[4],
-               "date":row[5],
-               "hour":row[6],
-               "status":row[7],
-               "lavaggio":row[8],
-               "taglio_pelo":row[9],
-               "taglio_unghie":row[10],
-               "spa":row[11],
-               "anti_parassitario":row[12]
+               "pet":row[5],
+               "date":row[6],
+               "hour":row[7],
+               "status":row[8],
+               "lavaggio":row[9],
+               "taglio_pelo":row[10],
+               "taglio_unghie":row[11],
+               "spa":row[12],
+               "anti_parassitario":row[13]
             }
         result.append(shop)
     return result
